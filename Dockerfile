@@ -1,10 +1,10 @@
 # mysql backup image
 FROM alpine:3.15.4
-MAINTAINER Avi Deitcher <https://github.com/deitch>
+MAINTAINER Fabian Kaindl <https://github.com/deitch>
 
 # install the necessary client
 # the mysql-client must be 10.3.15 or later
-RUN apk add --update 'mariadb-client>10.3.15' mariadb-connector-c bash python3 samba-client shadow openssl coreutils
+RUN apk add --update 'mariadb-client>10.3.15' mariadb-connector-c bash python3 py3-pip samba-client shadow openssl coreutils
 RUN rm -rf /var/cache/apk/*
 RUN touch /etc/samba/smb.conf
 RUN pip3 install awscli
