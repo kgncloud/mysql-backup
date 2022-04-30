@@ -5,8 +5,8 @@ MAINTAINER Avi Deitcher <https://github.com/deitch>
 # install the necessary client
 # the mysql-client must be 10.3.15 or later
 RUN apk add --update 'mariadb-client>10.3.15' mariadb-connector-c bash python3 samba-client shadow openssl coreutils
-RUN rm -rf /var/cache/apk/* && \
-    touch /etc/samba/smb.conf && \
+RUN rm -rf /var/cache/apk/*
+RUN touch /etc/samba/smb.conf && \
     pip3 install awscli
 
 # set us up to run as non-root user
