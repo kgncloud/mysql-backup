@@ -17,7 +17,7 @@ Please see [CONTRIBUTORS.md](./CONTRIBUTORS.md) for a list of contributors.
 
 ## Support
 
-Support is available at the Slack channel https://slack.databack.io. We accept issues here and general support questions on Slack.
+Support is available at the [databack Slack channel](http://databack.slack.com); register [here](https://join.slack.com/t/databack/shared_invite/zt-1cnbo2zfl-0dQS895icOUQy31RAruf7w). We accept issues here and general support questions on Slack.
 
 ## Backup
 To run a backup, launch `mysql-backup` image as a container with the correct parameters. Everything is controlled by environment variables passed to the container.
@@ -305,6 +305,8 @@ __You should consider the [use of `--env-file=`](https://docs.docker.com/engine/
 * `DB_PORT`: port to use to connect to database. Optional, defaults to `3306`
 * `DB_USER`: username for the database
 * `DB_PASS`: password for the database
+* `DB_NAMES`: name of database to restore to. Required if `SINGLE_DATABASE=true`, otherwise has no effect. Although the name is plural, it must contain exactly one database name.
+* `SINGLE_DATABASE`: If is set to `true`, `DB_NAMES` is required and mysql command will run with `--database=$DB_NAMES` flag. This avoids the need of `USE <database>;` statement, which is useful when restoring from a file saved with `SINGLE_DATABASE` set to `true`.
 * `DB_RESTORE_TARGET`: path to the actual restore file, which should be a compressed dump file. The target can be an absolute path, which should be volume mounted, an smb or S3 URL, similar to the target.
 * `DB_DUMP_DEBUG`: if `true`, dump copious outputs to the container logs while restoring.
 * To use the S3 driver `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` and `AWS_DEFAULT_REGION` will need to be defined.
